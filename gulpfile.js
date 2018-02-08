@@ -2,12 +2,14 @@
  * Dependencias
  */
 var gulp = require('gulp'),
+    gutil = require('gulp-util'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     jshint = require('gulp-jshint'),
     rename = require('gulp-rename'),
     debug = require('gulp-debug'),
     sass = require('gulp-sass'),
+    uncss = require('gulp-uncss'),
     autoprefixer = require('gulp-autoprefixer'),
     cleancss = require('gulp-clean-css'),
     livereload = require('gulp-livereload'),
@@ -22,7 +24,7 @@ gulp.task('ts', function() {
 gulp.task('js', ['ts'], function() {
     gulp.src(['js/source/*.js', 'js/build/ts/*.js'])
         .pipe(concat('bundle.js'))
-        .pipe(uglify())
+        .pipe(uglify().on('error', gutil.log))
         .pipe(gulp.dest('js/build/'))
         .pipe(livereload());
 });
@@ -32,6 +34,7 @@ gulp.task('scss', function() {
         .pipe(sass()).on('error', sass.logError)
         .pipe(autoprefixer())
         .pipe(rename('bundle.css'))
+        .pipe(uncss({ html: ['index.html'] }))
         .pipe(cleancss({compatibility: 'ie8'}))
         .pipe(gulp.dest('css/build/'))
         .pipe(livereload());

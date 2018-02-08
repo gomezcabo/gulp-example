@@ -5,6 +5,11 @@ body {
     font-size: $font-size-base;
     color: $theme-primary-color;
 
+    /* Unused rule, it will be remobed by gulp-uncss plugin */
+    article {
+        color: red;
+    }
+
     h1 {
         margin: 0;
         padding: 2rem;
