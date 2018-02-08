@@ -1,0 +1,23 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: $theme-background-color;
+    font-size: $font-size-base;
+    color: $theme-primary-color;
+
+    h1 {
+        margin: 0;
+        padding: 2rem;
+
+        border-bottom: 1px solid $theme-primary-color;
+        margin-bottom: 1rem;
+        padding-top: 5rem;
+        padding-left: 2rem;
+
+        display: flex;
+    }
+
+    #content {
+        padding: 0 2rem;
+    }
+}
